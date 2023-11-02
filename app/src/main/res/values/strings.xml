@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">BMIapp</string>
+    <string name="height">Height:</string>
+    <string name="weight">Weight:</string>
+    <string name="calculate">Calculate</string>
+    <string name="result">Category based on the BMI result:</string>
+    <string name="underweight_1_description">Calculate</string>
 </resources>
