@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity() {
         val button = findViewById<Button>(R.id.calculateButton)
         button.setOnClickListener{
             val resultTV = findViewById<TextView>(R.id.bmiTV)
-            resultTV.text = "RESULT: DUPA"
+            resultTV.text = "RESULT: some value"
         }
     }
 }
