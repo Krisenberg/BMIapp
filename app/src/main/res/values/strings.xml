@@ -5,4 +5,7 @@
     <string name="calculate">Calculate</string>
     <string name="result">Category based on the BMI result:</string>
     <string name="underweight_1_description">Calculate</string>
+    <string name="nav_history_title">History</string>
+    <string name="nav_settings_title">Settings</string>
+    <string name="nav_author_title">Author</string>
 </resources>
