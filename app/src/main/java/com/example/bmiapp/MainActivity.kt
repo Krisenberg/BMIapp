@@ -15,6 +15,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         //setSupportActionBar(findViewById(R.id.toolbar))
 
+        //change the action bar title here
+        val actionBar = supportActionBar
+        actionBar?.title = "BMI calculator"
+
         val button = findViewById<Button>(R.id.calculateButton)
         button.setOnClickListener{
             val resultTV = findViewById<TextView>(R.id.bmiTV)

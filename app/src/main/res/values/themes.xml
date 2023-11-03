@@ -1,15 +1,28 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.BMIapp" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.BMIapp" parent="Theme.Material3.DayNight">
+        <item name="colorSurface">@color/admiral</item>
+        <item name="colorOnSurface">@color/white</item>
+        <item name="android:actionOverflowButtonStyle">@style/CustomButtonOverflow</item>
+        <item name="homeAsUpIndicator">@drawable/ic_back_arrow</item>
+<!--        <item name="homeAsUpIndicator">@style/CustomBackArrow</item>-->
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
 <!--        <item name="android:actionOverflowMenuStyle">@style/MyActionButtonOverflow</item>-->
     </style>
 
-    <style name="MyThemeOverlay_Toolbar" parent="ThemeOverlay.MaterialComponents.Toolbar.Primary">
-        <!-- color used by navigation icon and overflow icon -->
-        <item name="colorOnPrimary">@color/white</item>
+    <style name="CustomButtonOverflow">
+        <item name="android:src">@drawable/ic_menu_icon</item>
     </style>
+
+<!--    <style name="CustomBackArrow">-->
+<!--        <item name="android:src">@drawable/ic_back_arrow</item>-->
+<!--    </style>-->
+
+<!--    <style name="MyThemeOverlay_Toolbar" parent="ThemeOverlay.MaterialComponents.Toolbar.Primary">-->
+<!--        &lt;!&ndash; color used by navigation icon and overflow icon &ndash;&gt;-->
+<!--        <item name="colorOnPrimary">@color/white</item>-->
+<!--    </style>-->
 
 <!--    <style name="MyActionButtonOverflow" parent="Widget.Material3.Search.ActionButton.Overflow">-->
 <!--        <item name="android:src">@drawable/ic_menu_icon</item>-->
