@@ -13,8 +13,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        UnitAdapterViewModel.setup(applicationContext)
-        //setSupportActionBar(findViewById(R.id.toolbar))
+
+        //setup the Unit Adapter so it can use the SharedPreferences
+        UnitAdapter.setup(applicationContext)
 
         //change the action bar title here
         val actionBar = supportActionBar

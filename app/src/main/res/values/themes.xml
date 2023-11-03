@@ -11,7 +11,7 @@
 <!--        <item name="android:actionOverflowMenuStyle">@style/MyActionButtonOverflow</item>-->
     </style>
 
-    <style name="CustomButtonOverflow">
+    <style name="CustomButtonOverflow" parent="@android:style/Widget.ActionButton.Overflow">
         <item name="android:src">@drawable/ic_menu_icon</item>
     </style>
 

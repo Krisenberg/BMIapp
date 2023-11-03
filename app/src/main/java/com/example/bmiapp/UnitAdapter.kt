@@ -1,14 +1,12 @@
 package com.example.bmiapp
 
-import android.app.Activity
 import android.content.Context
 import android.content.SharedPreferences
-import androidx.lifecycle.ViewModel
 
 private const val shared_pref_height_unit_key = "heightUnit"
 private const val shared_pref_weight_unit_key = "weightUnit"
 private const val shared_pref_file_key = "sharedPreferencesUnitAdapter"
-object UnitAdapterViewModel{
+object UnitAdapter{
 
     val height_units = mapOf(
         "cm" to 0.01,
@@ -42,42 +40,18 @@ object UnitAdapterViewModel{
     }
 
     fun loadHeightUnit() : String {
-        if (shared_pref_units != null)
-            return shared_pref_units!!.getString(shared_pref_height_unit_key, "cm")!!
-        return "cm"
+        return shared_pref_units?.getString(shared_pref_height_unit_key, "cm")!!
     }
 
     fun loadWeightUnit() : String? {
-        if (shared_pref_units != null)
-            return shared_pref_units!!.getString(shared_pref_weight_unit_key, "kg")!!
-        return "kg"
+        return shared_pref_units?.getString(shared_pref_weight_unit_key, "kg")!!
     }
 
-    fun getHeightUnitPosition() : Int {
-        var index = 0
-        val current_unit = loadHeightUnit()
-
-        for ((key, _) in height_units) {
-            if (key == current_unit) {
-                return index
-            }
-            index++
-        }
-        return -1
-    }
-
-    fun getWeightUnitPosition() : Int {
-        var index = 0
-        val current_unit = loadWeightUnit()
-
-        for ((key, _) in weight_units) {
-            if (key == current_unit) {
-                return index
-            }
-            index++
-        }
-        return -1
-    }
+//    fun loadWeightUnit() : String? {
+//        if (shared_pref_units != null)
+//            return shared_pref_units!!.getString(shared_pref_weight_unit_key, "kg")!!
+//        return "kg"
+//    }
 
 //    fun getHeightUnitScalingFactor(): Double {
 //        if (height_units[selected_height_unit] != null)

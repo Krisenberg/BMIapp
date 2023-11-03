@@ -16,10 +16,10 @@
         android:textSize="@dimen/default_text_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintHorizontal_bias="0.196"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.1" />
+        app:layout_constraintVertical_bias="0.201" />
 
     <EditText
         android:id="@+id/heightInput"
@@ -40,15 +40,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_small"
         android:layout_marginEnd="@dimen/margin_small"
-        android:layout_marginTop="@dimen/margin_huge"
         android:text="@string/weight"
         android:textSize="@dimen/default_text_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintHorizontal_bias="0.684"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/heightInput"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.201" />
 
     <EditText
         android:id="@+id/weightInput"
@@ -70,46 +69,23 @@
         android:layout_marginStart="@dimen/margin_small"
         android:layout_marginTop="@dimen/margin_huge"
         android:layout_marginEnd="@dimen/margin_small"
+        android:backgroundTint="@color/admiral"
         android:text="@string/calculate"
         android:textColor="@color/white"
-        android:textSize="@dimen/default_text_size"
-        android:backgroundTint="@color/admiral"
-        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.337"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/weightInput" />
+        app:layout_constraintTop_toBottomOf="@+id/heightInput" />
 
     <TextView
         android:id="@+id/bmiTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_small"
-        android:layout_marginTop="@dimen/margin_big"
-        android:layout_marginEnd="@dimen/margin_small"
-        android:gravity="center"
+        android:layout_marginStart="@dimen/margin_huge"
         android:textSize="@dimen/huge_text_size"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/calculateButton" />
-
-    <TextView
-        android:id="@+id/heightUnitTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_mid"
-        android:text="cm"
-        android:textSize="@dimen/default_text_size"
-        app:layout_constraintStart_toEndOf="@+id/heightInput"
-        app:layout_constraintTop_toTopOf="@+id/heightInput" />
-
-    <TextView
-        android:id="@+id/weightUnitTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_mid"
-        android:text="kg"
-        android:textSize="@dimen/default_text_size"
-        app:layout_constraintStart_toEndOf="@+id/weightInput"
-        app:layout_constraintTop_toTopOf="@+id/weightInput" />
+        app:layout_constraintHorizontal_bias="0.182"
+        app:layout_constraintStart_toEndOf="@+id/calculateButton"
+        app:layout_constraintTop_toTopOf="@+id/calculateButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
