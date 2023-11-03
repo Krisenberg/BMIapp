@@ -3,7 +3,22 @@
     <style name="Base.Theme.BMIapp" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+<!--        <item name="android:actionOverflowMenuStyle">@style/MyActionButtonOverflow</item>-->
     </style>
+
+    <style name="MyThemeOverlay_Toolbar" parent="ThemeOverlay.MaterialComponents.Toolbar.Primary">
+        <!-- color used by navigation icon and overflow icon -->
+        <item name="colorOnPrimary">@color/white</item>
+    </style>
+
+<!--    <style name="MyActionButtonOverflow" parent="Widget.Material3.Search.ActionButton.Overflow">-->
+<!--        <item name="android:src">@drawable/ic_menu_icon</item>-->
+<!--        <item name="android:background">?android:attr/actionBarItemBackground</item>-->
+<!--        <item name="android:contentDescription">"Lala"</item>-->
+<!--        <item name="overlapAnchor">false</item>-->
+<!--        <item name="android:overlapAnchor" tools:ignore="NewApi">false</item>-->
+<!--        <item name="android:dropDownVerticalOffset">15dp</item>-->
+<!--    </style>-->
 
     <style name="Theme.BMIapp" parent="Base.Theme.BMIapp" />
 </resources>

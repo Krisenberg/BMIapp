@@ -6,16 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/topAppBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/admiral"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/admiral"
+        app:menu="@menu/nav_menu"
         app:title="BMI calculator"
-        app:titleTextColor="@color/white"/>
+        app:titleTextColor="@color/white"
+        style="@style/Widget.MaterialComponents.Toolbar.Primary"
+        android:theme="@style/MyThemeOverlay_Toolbar"/>
 
 
     <TextView
@@ -30,7 +33,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.097"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintTop_toBottomOf="@+id/topAppBar"
         app:layout_constraintVertical_bias="0.064" />
 
     <EditText
