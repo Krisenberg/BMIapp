@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModel
 private const val shared_pref_height_unit_key = "heightUnit"
 private const val shared_pref_weight_unit_key = "weightUnit"
 private const val shared_pref_file_key = "sharedPreferencesUnitAdapter"
-object UnitAdapterViewModel : ViewModel() {
+object UnitAdapterViewModel{
 
     val height_units = mapOf(
         "cm" to 0.01,
