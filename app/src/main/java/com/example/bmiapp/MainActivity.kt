@@ -13,6 +13,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        UnitAdapterViewModel.setup(applicationContext)
         //setSupportActionBar(findViewById(R.id.toolbar))
 
         //change the action bar title here
