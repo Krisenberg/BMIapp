@@ -88,4 +88,24 @@
         app:layout_constraintStart_toEndOf="@+id/calculateButton"
         app:layout_constraintTop_toTopOf="@+id/calculateButton" />
 
+    <TextView
+        android:id="@+id/heightUnitTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_mid"
+        android:text="cm"
+        android:textSize="@dimen/default_text_size"
+        app:layout_constraintStart_toEndOf="@+id/heightInput"
+        app:layout_constraintTop_toTopOf="@+id/heightInput" />
+
+    <TextView
+        android:id="@+id/weightUnitTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_mid"
+        android:text="kg"
+        android:textSize="@dimen/default_text_size"
+        app:layout_constraintStart_toEndOf="@+id/weightInput"
+        app:layout_constraintTop_toTopOf="@+id/weightInput" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

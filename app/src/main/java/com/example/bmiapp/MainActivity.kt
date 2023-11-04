@@ -29,8 +29,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         //Toast.makeText(this@MainActivity, "DUPA ${mainViewModel.current_height_value.value}", Toast.LENGTH_SHORT).show()
         super.onCreate(savedInstanceState)
+        println("onCreate{{{")
         setContentView(R.layout.activity_main)
-        android.R.id.home
 
         //mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         //val mainViewModel: MainViewModel by viewModels()
@@ -169,6 +169,7 @@ class MainActivity : AppCompatActivity() {
         val weightUnit = findViewById<TextView>(R.id.weightUnitTV)
         val heightInput = findViewById<EditText>(R.id.heightInput)
         val weightInput = findViewById<EditText>(R.id.weightInput)
+        val resultTV = findViewById<TextView>(R.id.bmiTV)
 
         // Set the values from uiState to the TextViews
         heightUnit.text = uiState.heightUnit
@@ -178,6 +179,9 @@ class MainActivity : AppCompatActivity() {
             heightInput.setText("")
         if(weightUpdateResult)
             weightInput.setText("")
+
+        if(heightUpdateResult || weightUpdateResult)
+            resultTV.text = ""
     }
 
     private fun updateUIbmiResult(uiState: CalculatorUiState) {
@@ -213,4 +217,34 @@ class MainActivity : AppCompatActivity() {
 //        }
 //        return false
 //    }
+
+    override fun onStart() {
+        super.onStart()
+        println("onStart{{{")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        println("onResume{{{")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        println("onPause{{{")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        println("onStop{{{")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        println("onDestroy{{{")
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        println("onRestart{{{")
+    }
 }
