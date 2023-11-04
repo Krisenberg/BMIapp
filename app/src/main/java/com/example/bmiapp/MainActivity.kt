@@ -8,8 +8,12 @@ import android.view.MenuItem
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 
 class MainActivity : AppCompatActivity() {
+
+    private var viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -34,9 +38,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId) {
+        when (item.itemId) {
             R.id.nav_history -> Toast.makeText(this, "Twoja stara", Toast.LENGTH_SHORT).show()
-            R.id.nav_settings -> startActivity(Intent(this, Settings::class.java))
+            R.id.nav_settings -> {
+                startActivity(Intent(this, Settings::class.java))
+                viewModel.checkIfUnitsChanged()
+            }
         }
         return super.onOptionsItemSelected(item)
     }
