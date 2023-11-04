@@ -14,8 +14,9 @@ import kotlinx.coroutines.flow.update
 data class CalculatorUiState(
     val heightValue: Double? = null,
     val weightValue: Double? = null,
-    val heightUnit: String = "",
-    val weightUnit: String = ""
+    val heightUnit: String = "m",
+    val weightUnit: String = "kg",
+    val bmiValue: Double? = null
 )
 
 class MainViewModel : ViewModel() {
@@ -63,6 +64,23 @@ class MainViewModel : ViewModel() {
                 weightValue = newValue
             )
         }
+    }
+
+    fun calculateBMI(): Boolean {
+        if (uiState.value.heightValue!=null && uiState.value.weightValue!=null) {
+            _uiState.update { currentState ->
+                currentState.copy(
+                    bmiValue = BMIcalculator.calculateBMI(
+                        uiState.value.heightValue!!,
+                        UnitAdapter.getHeightUnitScalingFactor(),
+                        uiState.value.weightValue!!,
+                        UnitAdapter.getWeightUnitScalingFactor()
+                    )
+                )
+            }
+            return true
+        }
+        return false
     }
 
 //    var height_unit = null

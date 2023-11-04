@@ -55,7 +55,6 @@ class MainActivity : AppCompatActivity() {
                     val update_weight_result = mainViewModel.checkUnitAndUpdateWeight()
                     mainViewModel.checkUnitAndUpdateWeight()
                     updateUIonCreate(uiState, update_height_result, update_weight_result)
-
                 }
             }
         }
@@ -99,14 +98,31 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
+        val weightInput = findViewById<EditText>(R.id.weightInput)
+        weightInput.addTextChangedListener(object: TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+            override fun afterTextChanged(editableVal: Editable?) {
+                val newValue = editableVal.toString().toDoubleOrNull()
+                // Call the ViewModel function to update UI state
+                mainViewModel.updateWeightValue(newValue)
+//                mainViewModel.current_height_value.value = str.toString().toDoubleOrNull()
+//                if(mainViewModel.current_height_value.value != null)
+//                    Toast.makeText(this@MainActivity, "Wzrost to: ${mainViewModel.current_height_value.value}", Toast.LENGTH_SHORT).show()
+            }
+        })
+
         //change the action bar title here
         val actionBar = supportActionBar
         actionBar?.title = "BMI calculator"
 
         val button = findViewById<Button>(R.id.calculateButton)
         button.setOnClickListener{
-            val resultTV = findViewById<TextView>(R.id.bmiTV)
-            resultTV.text = "RESULT: some value"
+            val is_bmi_calculated = mainViewModel.calculateBMI()
+            if (is_bmi_calculated)
+                updateUIbmiResult(mainViewModel.uiState.value)
         }
     }
 
@@ -162,6 +178,11 @@ class MainActivity : AppCompatActivity() {
             heightInput.setText("")
         if(weightUpdateResult)
             weightInput.setText("")
+    }
+
+    private fun updateUIbmiResult(uiState: CalculatorUiState) {
+        val resultTV = findViewById<TextView>(R.id.bmiTV)
+        resultTV.text = String.format("%.2f", uiState.bmiValue)
     }
 
 //    private fun updateUIonResume(uiState: CalculatorUiState) {

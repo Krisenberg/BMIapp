@@ -53,15 +53,15 @@ object UnitAdapter{
 //        return "kg"
 //    }
 
-//    fun getHeightUnitScalingFactor(): Double {
-//        if (height_units[selected_height_unit] != null)
-//            return height_units[selected_height_unit]!!
-//        return 1.0
-//    }
-//
-//    fun getWeightUnitScalingFactor(): Double? {
-//        if (weight_units[selected_weight_unit] != null)
-//            return weight_units[selected_weight_unit]!!
-//        return 1.0
-//    }
+    fun getHeightUnitScalingFactor(): Double {
+        if (height_units[shared_pref_units?.getString(shared_pref_height_unit_key, "cm")] != null)
+            return height_units[shared_pref_units?.getString(shared_pref_height_unit_key, "cm")]!!
+        return 1.0
+    }
+
+    fun getWeightUnitScalingFactor(): Double {
+        if (weight_units[shared_pref_units?.getString(shared_pref_weight_unit_key, "kg")] != null)
+            return weight_units[shared_pref_units?.getString(shared_pref_weight_unit_key, "kg")]!!
+        return 1.0
+    }
 }
