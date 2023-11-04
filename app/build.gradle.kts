@@ -38,6 +38,10 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
     // LiveData
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version")
+    val activity_version = "1.7.2"
+    val fragment_version = "1.6.2"
+    implementation ("androidx.activity:activity-ktx:$activity_version")
+    implementation ("androidx.fragment:fragment-ktx:$fragment_version")
     //DrawerLayout
     implementation ("com.google.android.material:material:1.2.0-alpha05")
     implementation("androidx.core:core-ktx:1.9.0")

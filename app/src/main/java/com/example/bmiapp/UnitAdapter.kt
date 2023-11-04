@@ -43,7 +43,7 @@ object UnitAdapter{
         return shared_pref_units?.getString(shared_pref_height_unit_key, "cm")!!
     }
 
-    fun loadWeightUnit() : String? {
+    fun loadWeightUnit() : String {
         return shared_pref_units?.getString(shared_pref_weight_unit_key, "kg")!!
     }
 

@@ -2,6 +2,7 @@ package com.example.bmiapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -64,5 +65,16 @@ class Settings : AppCompatActivity() {
             }
         }
 
+    }
+
+    //finish this activity after clicking back icon
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                finish()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
