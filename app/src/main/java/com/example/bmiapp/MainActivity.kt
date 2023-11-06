@@ -23,11 +23,8 @@ import androidx.lifecycle.repeatOnLifecycle
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
-    val mainViewModel: MainViewModel by viewModels()
-
-    //private var viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-    //val mainViewModel: MainViewModel by viewModels()
-    //lateinit var mainViewModel: MainViewModel
+//    val mainViewModel: MainViewModel by viewModels()
+    lateinit var mainViewModel: MainViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //println("onCreate{{{")
@@ -37,33 +34,76 @@ class MainActivity : AppCompatActivity() {
         val actionBar = supportActionBar
         actionBar?.title = "BMI calculator"
 
-        //mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         //val mainViewModel: MainViewModel by viewModels()
 
+        mainViewModel.current_height_unit.observe(this, Observer {
+            findViewById<TextView>(R.id.heightUnitTV).text = it.toString()
+        })
 
-//        mainViewModel.current_height_unit.observe(this, Observer {
-//            findViewById<TextView>(R.id.heightUnitTV).text = it.toString()
-//        })
-//
-//        mainViewModel.current_weight_unit.observe(this, Observer {
-//            findViewById<TextView>(R.id.weightUnitTV).text = it.toString()
-//        })
+        mainViewModel.current_weight_unit.observe(this, Observer {
+            findViewById<TextView>(R.id.weightUnitTV).text = it.toString()
+        })
+
+        mainViewModel.current_height_value.observe(this, Observer {
+            val heightET = findViewById<EditText>(R.id.heightInput)
+            if (it == null)
+                heightET.setText("")
+            else
+                heightET.setText(it.toString())
+        })
+
+        mainViewModel.current_weight_value.observe(this, Observer {
+            val weightET = findViewById<EditText>(R.id.weightInput)
+            if (it == null)
+                weightET.setText("")
+            else
+                weightET.setText(it.toString())
+        })
+
+        mainViewModel.current_bmi_value.observe(this, Observer {
+            val resultTV = findViewById<TextView>(R.id.bmiTV)
+            val resultColor = mainViewModel.getBMIcolor()
+            if(it == null)
+                resultTV.text = ""
+            else {
+                resultTV.setTextColor(ContextCompat.getColor(this, resultColor))
+                resultTV.text = String.format("%.2f", it)
+            }
+        })
 
         //setup the Unit Adapter so it can use the SharedPreferences
         UnitAdapter.setup(applicationContext)
 
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                mainViewModel.uiState.collect {uiState ->
-                    // Update UI elements
-                    val update_height_result = mainViewModel.checkUnitAndUpdateHeight()
-                    val update_weight_result = mainViewModel.checkUnitAndUpdateWeight()
-                    //mainViewModel.checkUnitAndUpdateWeight()
-                    updateUIonCreate(uiState, update_height_result, update_weight_result)
-                }
-            }
-        }
+        getHeightInputAndUpdate()
+        getWeightInputAndUpdate()
 
+//        lifecycleScope.launch {
+//            repeatOnLifecycle(Lifecycle.State.STARTED) {
+//                mainViewModel.uiState.collect {uiState ->
+//                    // Update UI elements
+//                    val update_height_result = mainViewModel.checkUnitAndUpdateHeight()
+//                    val update_weight_result = mainViewModel.checkUnitAndUpdateWeight()
+//                    //mainViewModel.checkUnitAndUpdateWeight()
+//                    updateUIonCreate(uiState, update_height_result, update_weight_result)
+//                }
+//            }
+//        }
+
+        val button = findViewById<Button>(R.id.calculateButton)
+        button.setOnClickListener{
+            val is_bmi_calculated = mainViewModel.calculateBMI()
+            if (is_bmi_calculated)
+                updateUIbmiResult(mainViewModel.uiState.value)
+        }
+    }
+
+//    override fun onResume() {
+//        super.onResume()
+//
+//    }
+
+    fun getHeightInputAndUpdate() {
         val heightInput = findViewById<EditText>(R.id.heightInput)
         heightInput.addTextChangedListener(object: TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
@@ -79,7 +119,9 @@ class MainActivity : AppCompatActivity() {
 //                    Toast.makeText(this@MainActivity, "Wzrost to: ${mainViewModel.current_height_value.value}", Toast.LENGTH_SHORT).show()
             }
         })
+    }
 
+    fun getWeightInputAndUpdate() {
         val weightInput = findViewById<EditText>(R.id.weightInput)
         weightInput.addTextChangedListener(object: TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
@@ -95,7 +137,9 @@ class MainActivity : AppCompatActivity() {
 //                    Toast.makeText(this@MainActivity, "Wzrost to: ${mainViewModel.current_height_value.value}", Toast.LENGTH_SHORT).show()
             }
         })
+    }
 
+    fun calculateBMIandUpdate() {
         val button = findViewById<Button>(R.id.calculateButton)
         button.setOnClickListener{
             val is_bmi_calculated = mainViewModel.calculateBMI()
@@ -103,11 +147,6 @@ class MainActivity : AppCompatActivity() {
                 updateUIbmiResult(mainViewModel.uiState.value)
         }
     }
-
-//    override fun onResume() {
-//        super.onResume()
-//
-//    }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.nav_menu,menu)
@@ -144,16 +183,16 @@ class MainActivity : AppCompatActivity() {
         updateUIbmiResult(uiState)
     }
 
-    private fun updateUIbmiResult(uiState: CalculatorUiState) {
-        val resultTV = findViewById<TextView>(R.id.bmiTV)
-        val resultColor = mainViewModel.getBMIcolor()
-        if(uiState.bmiValue==null)
-            resultTV.text = ""
-        else {
-            resultTV.setTextColor(ContextCompat.getColor(this, resultColor))
-            resultTV.text = String.format("%.2f", uiState.bmiValue)
-        }
-    }
+//    private fun updateUIbmiResult(uiState: CalculatorUiState) {
+//        val resultTV = findViewById<TextView>(R.id.bmiTV)
+//        val resultColor = mainViewModel.getBMIcolor()
+//        if(uiState.bmiValue==null)
+//            resultTV.text = ""
+//        else {
+//            resultTV.setTextColor(ContextCompat.getColor(this, resultColor))
+//            resultTV.text = String.format("%.2f", uiState.bmiValue)
+//        }
+//    }
 
 //    private fun updateUIonResume(uiState: CalculatorUiState) {
 //        // Example: Update TextViews with the dice values and roll count
