@@ -223,10 +223,10 @@ class MainActivity : AppCompatActivity() {
 //        println("onStart{{{")
 //    }
 //
-//    override fun onResume() {
-//        super.onResume()
-//        println("onResume{{{")
-//    }
+    override fun onResume() {
+        super.onResume()
+        updateUIbmiResult(mainViewModel.uiState.value)
+    }
 //
 //    override fun onPause() {
 //        super.onPause()
