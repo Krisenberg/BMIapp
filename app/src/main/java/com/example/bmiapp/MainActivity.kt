@@ -1,6 +1,7 @@
 package com.example.bmiapp
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -12,6 +13,7 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
@@ -27,10 +29,13 @@ class MainActivity : AppCompatActivity() {
     //val mainViewModel: MainViewModel by viewModels()
     //lateinit var mainViewModel: MainViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
-        //Toast.makeText(this@MainActivity, "DUPA ${mainViewModel.current_height_value.value}", Toast.LENGTH_SHORT).show()
         super.onCreate(savedInstanceState)
         //println("onCreate{{{")
         setContentView(R.layout.activity_main)
+
+        //change the action bar title here
+        val actionBar = supportActionBar
+        actionBar?.title = "BMI calculator"
 
         //mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         //val mainViewModel: MainViewModel by viewModels()
@@ -53,35 +58,12 @@ class MainActivity : AppCompatActivity() {
                     // Update UI elements
                     val update_height_result = mainViewModel.checkUnitAndUpdateHeight()
                     val update_weight_result = mainViewModel.checkUnitAndUpdateWeight()
-                    mainViewModel.checkUnitAndUpdateWeight()
+                    //mainViewModel.checkUnitAndUpdateWeight()
                     updateUIonCreate(uiState, update_height_result, update_weight_result)
                 }
             }
         }
 
-//        checkIfHeightUnitChanged()
-//        checkIfWeightUnitChanged()
-
-//        val heightInput = findViewById<EditText>(R.id.heightInput)
-//
-//        val has_height_unit_changed = checkIfHeightUnitChanged()
-//        if (mainViewModel.current_height_value.value != null && !has_height_unit_changed){
-//            heightInput.setText(mainViewModel.current_height_value.value.toString())
-//            Toast.makeText(this@MainActivity, "TUTAJ JESTEM", Toast.LENGTH_SHORT).show()
-//        } else {
-//            heightInput.addTextChangedListener(object: TextWatcher{
-//                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-//                }
-//
-//                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-//                }
-//
-//                override fun afterTextChanged(str: Editable?) {
-//                    mainViewModel.current_height_value.value=str.toString().toDoubleOrNull()
-//                    Toast.makeText(this@MainActivity, "Wzrost to: ${mainViewModel.current_height_value.value}", Toast.LENGTH_SHORT).show()
-//                }
-//            })
-//        }
         val heightInput = findViewById<EditText>(R.id.heightInput)
         heightInput.addTextChangedListener(object: TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
@@ -114,10 +96,6 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        //change the action bar title here
-        val actionBar = supportActionBar
-        actionBar?.title = "BMI calculator"
-
         val button = findViewById<Button>(R.id.calculateButton)
         button.setOnClickListener{
             val is_bmi_calculated = mainViewModel.calculateBMI()
@@ -128,23 +106,7 @@ class MainActivity : AppCompatActivity() {
 
 //    override fun onResume() {
 //        super.onResume()
-//        updateUIonResume(mainViewModel.uiState.value)
-//    }
-
-//    override fun onResume() {
-//        Toast.makeText(this@MainActivity, "HeightUnit ${mainViewModel.current_height_value.value}", Toast.LENGTH_SHORT).show()
-//        super.onResume()
 //
-//        // Check if the height unit changed
-//        val has_height_unit_changed = checkIfHeightUnitChanged()
-//
-//        val heightInput = findViewById<EditText>(R.id.heightInput)
-//        heightInput.setText(mainViewModel.current_height_value.value.toString())
-////        if(!has_height_unit_changed)
-////            heightInput.setText("DUPA")
-////        if (mainViewModel.current_height_value.value != null && !has_height_unit_changed) {
-////            heightInput.setText(mainViewModel.current_height_value.value.toString())
-////        }
 //    }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -169,7 +131,6 @@ class MainActivity : AppCompatActivity() {
         val weightUnit = findViewById<TextView>(R.id.weightUnitTV)
         val heightInput = findViewById<EditText>(R.id.heightInput)
         val weightInput = findViewById<EditText>(R.id.weightInput)
-        val resultTV = findViewById<TextView>(R.id.bmiTV)
 
         // Set the values from uiState to the TextViews
         heightUnit.text = uiState.heightUnit
@@ -180,13 +141,18 @@ class MainActivity : AppCompatActivity() {
         if(weightUpdateResult)
             weightInput.setText("")
 
-        if(heightUpdateResult || weightUpdateResult)
-            resultTV.text = ""
+        updateUIbmiResult(uiState)
     }
 
     private fun updateUIbmiResult(uiState: CalculatorUiState) {
         val resultTV = findViewById<TextView>(R.id.bmiTV)
-        resultTV.text = String.format("%.2f", uiState.bmiValue)
+        val resultColor = mainViewModel.getBMIcolor()
+        if(uiState.bmiValue==null)
+            resultTV.text = ""
+        else {
+            resultTV.setTextColor(ContextCompat.getColor(this, resultColor))
+            resultTV.text = String.format("%.2f", uiState.bmiValue)
+        }
     }
 
 //    private fun updateUIonResume(uiState: CalculatorUiState) {
@@ -223,10 +189,10 @@ class MainActivity : AppCompatActivity() {
 //        println("onStart{{{")
 //    }
 //
-    override fun onResume() {
-        super.onResume()
-        updateUIbmiResult(mainViewModel.uiState.value)
-    }
+//    override fun onResume() {
+//        super.onResume()
+//        updateUIbmiResult(mainViewModel.uiState.value)
+//    }
 //
 //    override fun onPause() {
 //        super.onPause()

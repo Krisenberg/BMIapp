@@ -19,7 +19,6 @@ object UnitAdapter{
         "lb" to 0.4536,
     )
 
-
     private var shared_pref_units: SharedPreferences? = null
     fun setup(context: Context) {
         shared_pref_units = context.getSharedPreferences(shared_pref_file_key, Context.MODE_PRIVATE)

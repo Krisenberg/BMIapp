@@ -29,6 +29,7 @@ class MainViewModel : ViewModel() {
             _uiState.update { currentState ->
                 currentState.copy(
                     heightValue = null,
+                    bmiValue = null,
                     heightUnit = UnitAdapter.loadHeightUnit()
                 )
             }
@@ -42,6 +43,7 @@ class MainViewModel : ViewModel() {
             _uiState.update { currentState ->
                 currentState.copy(
                     weightValue = null,
+                    bmiValue = null,
                     weightUnit = UnitAdapter.loadWeightUnit()
                 )
             }
@@ -81,6 +83,10 @@ class MainViewModel : ViewModel() {
             return true
         }
         return false
+    }
+
+    fun getBMIcolor(): Int{
+        return R.color.red
     }
 
 //    var height_unit = null
