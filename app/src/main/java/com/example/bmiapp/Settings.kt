@@ -7,7 +7,6 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
-import android.widget.Toast
 
 private const val shared_pref_file_key = "sharedPreferencesUnitAdapter"
 class Settings : AppCompatActivity() {
@@ -23,6 +22,7 @@ class Settings : AppCompatActivity() {
         //create adapter that will allow to set a style of the spinner and use getPosition function
         val height_adapter = ArrayAdapter<String>(this, R.layout.list_item, resources.getStringArray(R.array.height_units_array))
         height_units_spinner.adapter = height_adapter
+
         //set value stored by UnitAdapter in the spinner
         height_units_spinner.setSelection(height_adapter.getPosition(UnitAdapter.loadHeightUnit()))
 
@@ -30,6 +30,7 @@ class Settings : AppCompatActivity() {
         //create adapter that will allow to set a style of the spinner and use getPosition function
         val weight_adapter = ArrayAdapter<String>(this, R.layout.list_item, resources.getStringArray(R.array.weight_units_array))
         weight_units_spinner.adapter = weight_adapter
+
         //set value stored by UnitAdapter in the spinner
         weight_units_spinner.setSelection(weight_adapter.getPosition(UnitAdapter.loadWeightUnit()))
 
@@ -42,7 +43,6 @@ class Settings : AppCompatActivity() {
                 id: Long
             ) {
                 UnitAdapter.saveNewHeightUnit(adapterView?.getItemAtPosition(position).toString())
-                Toast.makeText(this@Settings,"You selected ${UnitAdapter.loadHeightUnit()}", Toast.LENGTH_SHORT).show()
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -58,7 +58,6 @@ class Settings : AppCompatActivity() {
                 id: Long
             ) {
                 UnitAdapter.saveNewWeightUnit(adapterView?.getItemAtPosition(position).toString())
-                Toast.makeText(this@Settings,"You selected ${UnitAdapter.loadWeightUnit()}", Toast.LENGTH_SHORT).show()
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
