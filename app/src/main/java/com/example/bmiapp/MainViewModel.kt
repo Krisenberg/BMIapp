@@ -41,21 +41,27 @@ class MainViewModel : ViewModel() {
     fun updateHeightValue(newValue: Double?) {
         if (newValue == null)
         {
+            _bmi_value.value = null
             _height_value = null
         } else {
-            _height_value = newValue
+            if (_height_value != newValue) {
+                _bmi_value.value = null
+                _height_value = newValue
+            }
         }
-        _bmi_value.value = null
     }
 
     fun updateWeightValue(newValue: Double?) {
         if (newValue == null)
         {
             _weight_value = null
+            _bmi_value.value = null
         } else {
-            _weight_value = newValue
+            if (_weight_value != newValue) {
+                _weight_value = newValue
+                _bmi_value.value = null
+            }
         }
-        _bmi_value.value = null
     }
 
     fun calculateBMI(): Boolean {

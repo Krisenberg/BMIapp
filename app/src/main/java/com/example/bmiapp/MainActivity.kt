@@ -1,12 +1,19 @@
 package com.example.bmiapp
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.TextPaint
 import android.text.TextWatcher
+import android.text.method.LinkMovementMethod
+import android.text.style.ClickableSpan
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -39,15 +46,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         mainViewModel.bmi_value().observe(this, Observer {
-            val resultTV = findViewById<TextView>(R.id.bmiTV)
-            val resultColor = mainViewModel.getBMIcolor()
-            if(it == null) {
-                resultTV.text = ""
-            }
-            else {
-                resultTV.setTextColor(ContextCompat.getColor(this, resultColor))
-                resultTV.text = String.format("%.2f", it)
-            }
+            updateBMIonUI(it)
         })
     }
 
@@ -61,11 +60,11 @@ class MainActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.weightUnitTV).text = mainViewModel.weight_unit()
 
         val heightET = findViewById<EditText>(R.id.heightInput)
+        //Toast.makeText(this,"BMI value: ${mainViewModel.bmi_value().value}", Toast.LENGTH_SHORT).show()
         if (mainViewModel.height_value() == null)
             heightET.setText("")
         else
             heightET.setText(mainViewModel.height_value().toString())
-
         val weightET = findViewById<EditText>(R.id.weightInput)
         if (mainViewModel.weight_value() == null)
             weightET.setText("")
@@ -74,6 +73,40 @@ class MainActivity : AppCompatActivity() {
 
         getHeightInputAndUpdate()
         getWeightInputAndUpdate()
+
+
+        //updateBMIonUI(mainViewModel.bmi_value().value)
+    }
+
+    fun updateBMIonUI(bmi_value: Double?) {
+        val resultTV = findViewById<TextView>(R.id.bmiTV)
+        if(bmi_value == null) {
+            resultTV.text = ""
+        }
+        else {
+            val result_str = String.format("%.2f", bmi_value)
+            val resultColor = DescriptionProvider.getCategoryColorBasedOnValue(bmi_value, this)
+//            val resultColor = mainViewModel.getBMIcolor()
+//            resultTV.text = result_str
+            val span_result = SpannableString(result_str)
+
+            val clickable_result: ClickableSpan = object: ClickableSpan() {
+                override fun onClick(p0: View) {
+                    Toast.makeText(this@MainActivity, "Ready to jump into description", Toast.LENGTH_SHORT).show()
+                }
+
+                override fun updateDrawState(ds: TextPaint) {
+                    super.updateDrawState(ds)
+                    ds.isUnderlineText=false
+                    ds.color=ContextCompat.getColor(this@MainActivity, resultColor)
+//                    ds.bgColor = Color.TRANSPARENT
+                }
+            }
+            span_result.setSpan(clickable_result, 0, result_str.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+            //resultTV.setTextColor(ContextCompat.getColor(this, resultColor))
+            resultTV.setText(span_result, TextView.BufferType.SPANNABLE)
+            resultTV.movementMethod = LinkMovementMethod.getInstance()
+        }
     }
 
     fun getHeightInputAndUpdate() {

@@ -11,4 +11,20 @@
     <string name="select_unit_hint">Select a unit</string>
     <string name="height_unit">Height unit:</string>
     <string name="weight_unit">Weight unit:</string>
+    <string name="cat_1_name">Underweight (Severe thinness)</string>
+    <string name="cat_1_upper_bound">16.0</string>
+    <string name="cat_2_name">Underweight (Moderate thinness)</string>
+    <string name="cat_2_upper_bound">16.9</string>
+    <string name="cat_3_name">Underweight (Mild thinness)</string>
+    <string name="cat_3_upper_bound">18.4</string>
+    <string name="cat_4_name">Normal range</string>
+    <string name="cat_4_upper_bound">24.9</string>
+    <string name="cat_5_name">Overweight (Pre-obese)</string>
+    <string name="cat_5_upper_bound">29.9</string>
+    <string name="cat_6_name">Obese (Class I)</string>
+    <string name="cat_6_upper_bound">34.9</string>
+    <string name="cat_7_name">Obese (Class II)</string>
+    <string name="cat_7_upper_bound">39.9</string>
+    <string name="cat_8_name">Obese (Class III)</string>
+    <string name="cat_8_upper_bound">unlimited</string>
 </resources>
