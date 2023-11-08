@@ -52,6 +52,7 @@ object HistoryHandler {
             entriesList.add(deserializedEntry)
         }
 
+
         return entriesList
     }
 
