@@ -27,4 +27,5 @@
     <string name="cat_7_upper_bound">39.9</string>
     <string name="cat_8_name">Obese (Class III)</string>
     <string name="cat_8_upper_bound">unlimited</string>
+    <string name="nav_delete">Delete</string>
 </resources>

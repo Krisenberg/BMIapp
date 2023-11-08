@@ -35,6 +35,7 @@ class MainActivity : AppCompatActivity() {
 
         //setup the Unit Adapter so it can use the SharedPreferences
         UnitAdapter.setup(applicationContext)
+        HistoryHandler.setup(applicationContext)
 
         mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
@@ -43,6 +44,15 @@ class MainActivity : AppCompatActivity() {
         button.setOnClickListener{
             if (!mainViewModel.calculateBMI())
                 Toast.makeText(this,"Please provide valid height and weight", Toast.LENGTH_SHORT).show()
+            else {
+                val bmi_value = mainViewModel.bmi_value().value!!
+                val bmi_color = DescriptionProvider.getCategoryColorBasedOnValue(bmi_value, this)
+                val newEntry = HistoryEntry("date", mainViewModel.height_value()!!, mainViewModel.height_unit(),
+                                            mainViewModel.weight_value()!!, mainViewModel.weight_unit(),
+                                            bmi_value, ContextCompat.getColor(this, bmi_color))
+                HistoryHandler.addEntry(newEntry)
+//                Toast.makeText(this,"Entry added, BMI: ${newEntry.bmi}", Toast.LENGTH_SHORT).show()
+            }
         }
 
         mainViewModel.bmi_value().observe(this, Observer {
@@ -146,7 +156,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.nav_history -> Toast.makeText(this, "Nothing is here", Toast.LENGTH_SHORT).show()
+            R.id.nav_history -> {
+                //Toast.makeText(this, "Nothing is here", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this, History::class.java))
+            }
             R.id.nav_settings -> {
 //                Toast.makeText(this@MainActivity, "HeightUnit ${mainViewModel.current_height_value.value}", Toast.LENGTH_SHORT).show()
                 startActivity(Intent(this, Settings::class.java))

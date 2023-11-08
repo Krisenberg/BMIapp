@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    kotlin("plugin.serialization") version "1.9.20"
 }
 
 android {
@@ -42,6 +43,7 @@ dependencies {
     val fragment_version = "1.6.2"
     implementation ("androidx.activity:activity-ktx:$activity_version")
     implementation ("androidx.fragment:fragment-ktx:$fragment_version")
+    implementation ("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
     //DrawerLayout
     implementation ("com.google.android.material:material:1.2.0-alpha05")
     implementation("androidx.core:core-ktx:1.9.0")
