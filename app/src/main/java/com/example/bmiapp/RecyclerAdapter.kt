@@ -13,7 +13,7 @@ class RecyclerAdapter (private var entries: List<HistoryEntry> ): RecyclerView.A
         val entryWeightValue: TextView = itemView.findViewById(R.id.entry_weightValueTV)
         val entryHeightUnit: TextView = itemView.findViewById(R.id.entry_heightUnitTV)
         val entryWeightUnit: TextView = itemView.findViewById(R.id.entry_weightUnitTV)
-        val entryBMI: TextView: TextView = itemView.findViewById(R.id.entry_bmiValueTV)
+        val entryBMI: TextView = itemView.findViewById(R.id.entry_bmiValueTV)
 
 
     }
