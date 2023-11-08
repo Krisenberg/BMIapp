@@ -16,6 +16,7 @@ class RecyclerAdapter (private var entries: List<HistoryEntry> ): RecyclerView.A
         val entryWeightUnit: TextView = itemView.findViewById(R.id.entry_weightUnitTV)
         val entryBMI: TextView = itemView.findViewById(R.id.entry_bmiValueTV)
 
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
