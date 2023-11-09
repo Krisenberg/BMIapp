@@ -37,6 +37,9 @@ object DescriptionProvider {
         7 to R.color.red,
         8 to R.color.dark_red
     )
+
+    // Function to map provided value with the category ID. This ID is required to retrieve
+    // other information related to this category.
     private fun getCategoryIDBasedOnValue(bmi_value: Double, context: Context): Int? {
         for ((category_id, cat_upper_bound) in categories_id_upper_bound) {
             val upperBound = context.getString(cat_upper_bound).toDoubleOrNull()
@@ -45,14 +48,23 @@ object DescriptionProvider {
                 return category_id
             }
         }
+        // in case that no category was matched - return the ID of the last category.
         return categories_id_upper_bound.keys.toList().lastOrNull()
     }
+
+    // This function returns the name of the category stored in the strings.xml file
+    // based on the BMI value. It uses above function to map the value to the
+    // category ID in the first place.
     fun getCategoryNameBasedOnValue(bmi_value: Double, context: Context): String? {
         val category_id = getCategoryIDBasedOnValue(bmi_value, context)
         if (category_id != null)
             return context.getString(categories_id_name[category_id]!!)
         return null
     }
+
+    // This function returns the color of the category stored in the colors.xml file
+    // based on the BMI value. It also uses function to map the value to the
+    // category ID in the first place.
     fun getCategoryColorBasedOnValue(bmi_value: Double, context: Context): Int {
         val category_id = getCategoryIDBasedOnValue(bmi_value, context)
         if (category_id != null)

@@ -28,4 +28,8 @@
     <string name="cat_8_name">Obese (Class III)</string>
     <string name="cat_8_upper_bound">unlimited</string>
     <string name="nav_delete">Delete</string>
+    <string name="alert_warning">Warning</string>
+    <string name="alert_question">Do you really want to delete all the stored data?</string>
+    <string name="alert_negative_answer">No</string>
+    <string name="alert_positive_answer">Yes</string>
 </resources>

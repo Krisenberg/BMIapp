@@ -4,6 +4,11 @@ import kotlin.math.pow
 import kotlin.math.roundToInt
 
 object BMIcalculator {
+
+    // This function calculates the BMI value using the most popular
+    // formula. It takes the values of height and weight but also
+    // scaling factors, so it doesn't have to worry about differences
+    // in units since every value can be scaled to the 'cm' or 'kg'.
     fun calculateBMI(heightValue: Double, heightScalingFactor: Double,
                      weightValue: Double, weightScalingFactor: Double): Double {
 

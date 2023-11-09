@@ -2,6 +2,7 @@ package com.example.bmiapp
 
 import android.content.Intent
 import android.graphics.Color
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -18,13 +19,19 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import java.time.LocalDateTime
+import java.time.ZoneId
+import java.time.ZonedDateTime
+import java.time.format.DateTimeFormatter
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var mainViewModel: MainViewModel
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -47,7 +54,9 @@ class MainActivity : AppCompatActivity() {
             else {
                 val bmi_value = mainViewModel.bmi_value().value!!
                 val bmi_color = DescriptionProvider.getCategoryColorBasedOnValue(bmi_value, this)
-                val newEntry = HistoryEntry("date", mainViewModel.height_value()!!, mainViewModel.height_unit(),
+                val date_formatter = DateTimeFormatter.ofPattern("HH:mm:ss dd.MM.yyyy")
+                val current_date = ZonedDateTime.now(ZoneId.of("Europe/Warsaw")).format(date_formatter)
+                val newEntry = HistoryEntry(current_date.toString(), mainViewModel.height_value()!!, mainViewModel.height_unit(),
                                             mainViewModel.weight_value()!!, mainViewModel.weight_unit(),
                                             bmi_value, ContextCompat.getColor(this, bmi_color))
                 HistoryHandler.addEntry(newEntry)
