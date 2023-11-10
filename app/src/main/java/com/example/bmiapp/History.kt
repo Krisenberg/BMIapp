@@ -63,33 +63,33 @@ class History : AppCompatActivity() {
     }
 
     private fun showAlertDialog() {
-//        val alertBuilder = AlertDialog.Builder(this)
-//        val customView = LayoutInflater.from(this).inflate(R.layout.alert_dialog, null)
-//        alertBuilder.setView(customView)
-//        val dialog = alertBuilder.create()
+        val alertBuilder = AlertDialog.Builder(this)
+        val customView = LayoutInflater.from(this).inflate(R.layout.alert_dialog, null)
+        alertBuilder.setView(customView)
+        val dialog = alertBuilder.create()
 //        val dialog = Dialog(this)
 //        //dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
 //        //dialog.setCancelable(false)
 //        dialog.setContentView(R.layout.alert_dialog)
 //        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 //
-//        val buttonPositive = dialog.findViewById<Button>(R.id.alert_positiveBTN)
-//        val buttonNegative = dialog.findViewById<Button>(R.id.alert_negativeBTN)
+        val buttonPositive = dialog.findViewById<Button>(R.id.alert_positiveBTN)
+        val buttonNegative = dialog.findViewById<Button>(R.id.alert_negativeBTN)
 
-//        buttonPositive?.setOnClickListener{
-//            HistoryHandler.deleteHistory()
-//            history_entries.clear()
-//            historyRecyclerAdapter.notifyDataSetChanged()
-//            Toast.makeText(this,"History has been deleted", Toast.LENGTH_SHORT).show()
-//            dialog.dismiss()
-//        }
-//
-//        buttonNegative?.setOnClickListener {
-//            Toast.makeText(this,"History has been NOT deleted", Toast.LENGTH_SHORT).show()
-//            dialog.dismiss()
-//        }
+        buttonPositive?.setOnClickListener{
+            HistoryHandler.deleteHistory()
+            history_entries.clear()
+            historyRecyclerAdapter.notifyDataSetChanged()
+            Toast.makeText(this,"History has been deleted", Toast.LENGTH_SHORT).show()
+            dialog.dismiss()
+        }
 
-//        dialog.show()
+        buttonNegative?.setOnClickListener {
+            Toast.makeText(this,"History has been NOT deleted", Toast.LENGTH_SHORT).show()
+            dialog.dismiss()
+        }
+
+        dialog.show()
 
 
 //        val questionDialog = MaterialAlertDialogBuilder(this)
