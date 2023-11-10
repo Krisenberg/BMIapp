@@ -16,18 +16,20 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_mid"
+        android:layout_marginBottom="@dimen/margin_small"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintCircleRadius="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintCircleRadius="@dimen/alert_corner_radius">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/alert_warningTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_small"
             android:layout_marginStart="@dimen/margin_small"
+            android:layout_marginTop="@dimen/margin_small"
             android:text="@string/alert_warning"
             android:textColor="@color/dark_red"
             android:textSize="@dimen/default_text_size"
@@ -57,20 +59,15 @@
             android:id="@+id/alert_negativeBTN"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_huge"
-            android:layout_marginTop="@dimen/margin_mid"
-            android:layout_marginEnd="@dimen/margin_small"
-            android:layout_marginBottom="@dimen/margin_mid"
+            android:layout_marginStart="64dp"
             android:backgroundTint="@color/light_grey"
             android:text="@string/alert_negative_answer"
             android:textColor="@color/admiral"
             android:textSize="@dimen/default_text_size"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/alert_positiveBTN"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/alert_questionTV"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="1.0" />
 
         <Button
             android:id="@+id/alert_positiveBTN"
@@ -78,15 +75,15 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_mid"
             android:layout_marginEnd="@dimen/margin_huge"
-            android:layout_marginBottom="@dimen/margin_mid"
             android:backgroundTint="@color/light_grey"
             android:text="@string/alert_positive_answer"
             android:textColor="@color/admiral"
             android:textSize="@dimen/default_text_size"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/alert_negativeBTN"
             app:layout_constraintTop_toBottomOf="@+id/alert_questionTV"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintHorizontal_bias="0.9"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
