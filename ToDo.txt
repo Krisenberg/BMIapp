@@ -1,4 +1,3 @@
 To be added/changed:
 - description page about the result,
-- refactor the history list: limit it only to the last 10, add dates and sort the items before printing,
 - page about the author.

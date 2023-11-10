@@ -47,10 +47,7 @@ class History : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.nav_delete -> {
-                // delete the history after user clicks the 'Delete' icon
-//                HistoryHandler.deleteHistory()
-//                history_entries.clear()
-//                historyRecyclerAdapter.notifyDataSetChanged()
+                // Ask user whether the history should be deleted
                 showAlertDialog()
             }
             android.R.id.home -> {
@@ -63,19 +60,18 @@ class History : AppCompatActivity() {
     }
 
     private fun showAlertDialog() {
-//        val alertBuilder = AlertDialog.Builder(this)
-//        val customView = LayoutInflater.from(this).inflate(R.layout.alert_dialog, null)
-//        alertBuilder.setView(customView)
-//        val dialog = alertBuilder.create()
+
+        // Create a dialog that will pop onto the screen
         val dialog = Dialog(this)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setContentView(R.layout.alert_dialog)
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-//
+
         val buttonPositive = dialog.findViewById<Button>(R.id.alert_positiveBTN)
         val buttonNegative = dialog.findViewById<Button>(R.id.alert_negativeBTN)
 
         buttonPositive?.setOnClickListener{
+            // If the user chose 'YES' then the history has to be deleted and RecyclerView updated
             HistoryHandler.deleteHistory()
             history_entries.clear()
             historyRecyclerAdapter.notifyDataSetChanged()
@@ -89,55 +85,6 @@ class History : AppCompatActivity() {
         }
 
         dialog.show()
-
-
-//        val questionDialog = MaterialAlertDialogBuilder(this)
-//            .setTitle("Warning")
-//            .setMessage("Do you really want to delete all the stored data?")
-//            .setNegativeButton("No") { dialog, which ->
-//                Toast.makeText(this,"History has not been deleted", Toast.LENGTH_SHORT).show()
-//            }
-//            .setPositiveButton("Yes") { dialog, which ->
-//                HistoryHandler.deleteHistory()
-//                history_entries.clear()
-//                historyRecyclerAdapter.notifyDataSetChanged()
-//            }
-//            .show()
-
-//        val builder: AlertDialog.Builder = AlertDialog.Builder(this, R.style.MyAlertDialogTheme)
-//        builder
-//            .setMessage("I am the message")
-//            .setTitle("I am the title")
-//            .setPositiveButton("Positive") { dialog, which ->
-//                // Do something.
-//            }
-//            .setNegativeButton("Negative") { dialog, which ->
-//                // Do something else.
-//            }
-//
-//        val dialog: AlertDialog = builder.create()
-//        dialog.show()
-
-//        val builder = AlertDialog.Builder(this)
-//        builder.setTitle("Dialog Title")
-//        builder.setMessage("Dialog Message")
-//
-//        builder.setPositiveButton("OK") { dialog, which ->
-//            // Handle positive button click
-//        }
-//
-//        builder.setNegativeButton("Cancel") { dialog, which ->
-//            // Handle negative button click
-//        }
-//
-//        val alertDialog = builder.create()
-//
-//        // Set a semi-transparent background color for the window
-//        val window = alertDialog.window
-//        window?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#80000000"))) // Semi-transparent black background
-//
-//        alertDialog.show()
-
 
     }
 }
