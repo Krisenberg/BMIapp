@@ -13,23 +13,53 @@
     <string name="weight_unit">Weight unit:</string>
     <string name="cat_1_name">Underweight (Severe thinness)</string>
     <string name="cat_1_upper_bound">16.0</string>
+    <string name="cat_1_description">Individuals in this category have a BMI value indicating a
+        severely low body weight, which may pose health risks. Adequate nutritional intake and
+        medical attention may be necessary to address potential concerns related to under-nutrition.</string>
     <string name="cat_2_name">Underweight (Moderate thinness)</string>
     <string name="cat_2_upper_bound">16.9</string>
+    <string name="cat_2_description">This category includes individuals with a BMI suggesting
+        moderate thinness. While not as severe as the "Severe Thinness" category, attention to
+        proper nutrition and overall health is still crucial to prevent further weight loss.</string>
     <string name="cat_3_name">Underweight (Mild thinness)</string>
     <string name="cat_3_upper_bound">18.4</string>
+    <string name="cat_3_description">Individuals in this category have a BMI indicating mild thinness.
+        While they may not be severely underweight, it is advisable to monitor their weight and take
+        steps to ensure they maintain a healthy balance through proper diet and lifestyle.</string>
     <string name="cat_4_name">Normal range</string>
     <string name="cat_4_upper_bound">24.9</string>
+    <string name="cat_4_description">This is the ideal range for BMI, indicating a healthy weight
+        relative to height. Individuals falling within this category generally have a lower risk
+        of health issues associated with weight extremes.</string>
     <string name="cat_5_name">Overweight (Pre-obese)</string>
     <string name="cat_5_upper_bound">29.9</string>
+    <string name="cat_5_description">Individuals in this category have a BMI suggesting excess weight,
+        but they are not yet classified as obese. It is advisable for individuals in this range to
+        adopt lifestyle changes such as healthier eating habits and increased physical activity to
+        prevent further weight gain.</string>
     <string name="cat_6_name">Obese (Class I)</string>
     <string name="cat_6_upper_bound">34.9</string>
+    <string name="cat_6_description">This category indicates the first level of obesity. Individuals
+        with a BMI in this range may face an increased risk of obesity-related health issues,
+        and interventions such as diet modification and regular exercise are typically recommended.</string>
     <string name="cat_7_name">Obese (Class II)</string>
     <string name="cat_7_upper_bound">39.9</string>
+    <string name="cat_7_description">This represents a higher level of obesity, indicating a more
+        significant excess of body weight. Health risks associated with obesity become more pronounced
+        in this category, and medical supervision is often necessary to address potential complications.</string>
     <string name="cat_8_name">Obese (Class III)</string>
     <string name="cat_8_upper_bound">unlimited</string>
+    <string name="cat_8_description">This is the most severe level of obesity, indicating a substantial
+        excess of body weight. Individuals in this category are at the highest risk of obesity-related
+        health problems. Medical intervention, including lifestyle changes, dietary modifications,
+        and possibly surgical options, may be considered to manage health risks associated with severe obesity.</string>
     <string name="nav_delete">Delete</string>
     <string name="alert_warning">Warning</string>
     <string name="alert_question">Do you really want to delete all the stored data?</string>
     <string name="alert_negative_answer">No</string>
     <string name="alert_positive_answer">Yes</string>
+    <string name="detail_category_header">Category name</string>
+    <string name="detail_description_header">Category description</string>
+    <string name="bmi_score_header">BMI score</string>
+    <string name="author_name">Krzysztof Głowacz</string>
 </resources>

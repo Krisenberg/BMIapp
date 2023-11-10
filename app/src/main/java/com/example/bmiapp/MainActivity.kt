@@ -111,12 +111,16 @@ class MainActivity : AppCompatActivity() {
 
             val clickable_result: ClickableSpan = object: ClickableSpan() {
                 override fun onClick(p0: View) {
-                    Toast.makeText(this@MainActivity, "Ready to jump into description", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(this@MainActivity, "Ready to jump into description", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this@MainActivity, BMIdetails::class.java).also {
+                        it.putExtra("BMI_VALUE", bmi_value!!)
+                        startActivity(it)
+                    }
                 }
 
                 override fun updateDrawState(ds: TextPaint) {
                     super.updateDrawState(ds)
-                    ds.isUnderlineText=false
+                    ds.isUnderlineText=true
                     ds.color=ContextCompat.getColor(this@MainActivity, resultColor)
 //                    ds.bgColor = Color.TRANSPARENT
                 }
@@ -172,6 +176,9 @@ class MainActivity : AppCompatActivity() {
             R.id.nav_settings -> {
 //                Toast.makeText(this@MainActivity, "HeightUnit ${mainViewModel.current_height_value.value}", Toast.LENGTH_SHORT).show()
                 startActivity(Intent(this, Settings::class.java))
+            }
+            R.id.nav_author -> {
+                startActivity(Intent(this, Author::class.java))
             }
         }
         return super.onOptionsItemSelected(item)

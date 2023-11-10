@@ -38,6 +38,17 @@ object DescriptionProvider {
         8 to R.color.dark_red
     )
 
+    private val categories_id_description = mapOf(
+        1 to R.string.cat_1_description,
+        2 to R.string.cat_2_description,
+        3 to R.string.cat_3_description,
+        4 to R.string.cat_4_description,
+        5 to R.string.cat_5_description,
+        6 to R.string.cat_6_description,
+        7 to R.string.cat_7_description,
+        8 to R.string.cat_8_description
+    )
+
     // Function to map provided value with the category ID. This ID is required to retrieve
     // other information related to this category.
     private fun getCategoryIDBasedOnValue(bmi_value: Double, context: Context): Int? {
@@ -70,6 +81,16 @@ object DescriptionProvider {
         if (category_id != null)
             return categories_id_color[category_id]!!
         return R.color.black
+    }
+
+    // This function returns the description of the category stored in the strings.xml file
+    // based on the BMI value. It uses above function to map the value to the
+    // category ID in the first place.
+    fun getCategoryDescriptionBasedOnValue(bmi_value: Double, context: Context): String? {
+        val category_id = getCategoryIDBasedOnValue(bmi_value, context)
+        if (category_id != null)
+            return context.getString(categories_id_description[category_id]!!)
+        return null
     }
 
 

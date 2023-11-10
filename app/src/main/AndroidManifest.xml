@@ -21,6 +21,14 @@
             android:parentActivityName=".MainActivity"
             android:exported="false" />
         <activity
+            android:name=".BMIdetails"
+            android:parentActivityName=".MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Author"
+            android:parentActivityName=".MainActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

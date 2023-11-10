@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/bmi_details_headerTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/bmi_score_header"
+        android:textSize="@dimen/default_text_size"
+        app:layout_constraintBottom_toTopOf="@+id/categoryNameLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.385" />
+
+    <TextView
+        android:id="@+id/details_bmi_resultTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_big"
+        android:text=""
+        android:textSize="@dimen/huge_text_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bmi_details_headerTV" />
+
+    <TextView
+        android:id="@+id/category_nameTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_mid"
+        android:layout_marginTop="@dimen/margin_small"
+        android:layout_marginRight="@dimen/margin_mid"
+        android:layout_marginBottom="@dimen/margin_mid"
+        android:text=""
+        app:layout_constraintBottom_toTopOf="@+id/categoryNameLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/details_bmi_resultTV" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/categoryNameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_mid"
+        android:layout_marginTop="@dimen/margin_huge"
+        android:layout_marginRight="@dimen/margin_mid"
+        android:background="@drawable/bmi_details_header"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/category_nameTV">
+
+        <TextView
+            android:id="@+id/category_description_headerTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_mid"
+            android:layout_marginTop="@dimen/margin_mid"
+            android:layout_marginRight="@dimen/margin_mid"
+            android:layout_marginBottom="@dimen/margin_mid"
+            android:padding="@dimen/margin_small"
+            android:text="@string/detail_description_header"
+            android:textSize="@dimen/mid_text_size"
+            android:textStyle="italic"
+            app:layout_constraintBottom_toTopOf="@+id/category_descriptionTV"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/category_descriptionTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_mid"
+            android:layout_marginTop="@dimen/margin_mid"
+            android:layout_marginRight="@dimen/margin_mid"
+            android:layout_marginBottom="@dimen/margin_mid"
+            android:padding="@dimen/margin_mid"
+            android:text=""
+            android:textSize="@dimen/mid_text_size"
+            android:textStyle="italic"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/category_description_headerTV" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
