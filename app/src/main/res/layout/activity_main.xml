@@ -97,7 +97,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_mid"
-        android:text="cm"
+        android:text=""
         android:textSize="@dimen/default_text_size"
         app:layout_constraintStart_toEndOf="@+id/heightInput"
         app:layout_constraintTop_toTopOf="@+id/heightInput" />
@@ -107,7 +107,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_mid"
-        android:text="kg"
+        android:text=""
         android:textSize="@dimen/default_text_size"
         app:layout_constraintStart_toEndOf="@+id/weightInput"
         app:layout_constraintTop_toTopOf="@+id/weightInput" />
