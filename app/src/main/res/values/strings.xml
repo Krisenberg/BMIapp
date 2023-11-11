@@ -51,8 +51,8 @@
     <string name="cat_8_upper_bound">unlimited</string>
     <string name="cat_8_description">This is the most severe level of obesity, indicating a substantial
         excess of body weight. Individuals in this category are at the highest risk of obesity-related
-        health problems. Medical intervention, including lifestyle changes, dietary modifications,
-        and possibly surgical options, may be considered to manage health risks associated with severe obesity.</string>
+        health problems. Lifestyle changes, dietary modifications and possibly surgical options,
+        may be considered to manage health risks associated with severe obesity.</string>
     <string name="nav_delete">Delete</string>
     <string name="alert_warning">Warning</string>
     <string name="alert_question">Do you really want to delete all the stored data?</string>
@@ -62,4 +62,9 @@
     <string name="detail_description_header">Category description</string>
     <string name="bmi_score_header">BMI score</string>
     <string name="author_name">Krzysztof Głowacz</string>
+    <string name="author_description">21-year-old student of Applied Computer Science at Wrocław
+        University of Science and Technology. I like the most using programming as a tool to utilize
+        math or finance. Feel free to click the GitHub logo and check out my profile.</string>
+    <string name="author_about_me">About me</string>
+    <string name="author_github_icon_description">GitHub logo clickable icon</string>
 </resources>

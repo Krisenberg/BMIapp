@@ -7,14 +7,12 @@ import androidx.annotation.RequiresApi
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import java.time.LocalDateTime
-import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
-import java.util.LinkedList
-import java.util.Queue
 
 
 private const val string_set_key = "historyEntries"
 private const val history_file_key = "sharedPreferencesHistory"
+private const val max_list_size = 10
 object HistoryHandler {
     private var shared_pref_hist_handler: SharedPreferences? = null
     private lateinit var history_list: MutableList<HistoryEntry>
@@ -28,7 +26,7 @@ object HistoryHandler {
     @RequiresApi(Build.VERSION_CODES.O)
     private fun loadSortedHistoryList(): MutableList<HistoryEntry>{
         val savedSet = shared_pref_hist_handler?.getStringSet(string_set_key, setOf())
-        var entriesList = mutableListOf<HistoryEntry>()
+        val entriesList = mutableListOf<HistoryEntry>()
 
         if (savedSet != null) {
 
@@ -62,11 +60,12 @@ object HistoryHandler {
 //        for (i in 0..<newSetSize) {
 //            newSet.add(savedSet.elementAt(i))
 //        }
-        var historyListSize = history_list.size
-
+        val historyListSize = history_list.size
+        var deletedEntry: HistoryEntry? = null
 
         if (historyListSize > 0) {
-            if (historyListSize == 10) {
+            if (historyListSize == max_list_size) {
+                deletedEntry = history_list[max_list_size-1]
                 for (i in historyListSize-1 downTo 1) {
                     history_list[i] = history_list[i-1]
                 }
@@ -91,9 +90,13 @@ object HistoryHandler {
 //            history_list.add(entry)
 
         val savedSet = shared_pref_hist_handler?.getStringSet(string_set_key, setOf())
+//        shared_pref_hist_handler?.edit()?.remove(string_set_key)?.commit()
         var newSet: MutableSet<String> = mutableSetOf()
         if (savedSet != null)
             newSet = savedSet.toMutableSet()
+
+        if (deletedEntry != null)
+            newSet.remove(Json.encodeToString(deletedEntry))
 
         newSet.add(Json.encodeToString(entry))
 
@@ -121,7 +124,7 @@ object HistoryHandler {
     }
 
     fun deleteHistory() {
-        shared_pref_hist_handler?.edit()?.remove(string_set_key)?.commit()
+        shared_pref_hist_handler?.edit()?.remove(string_set_key)?.apply()
         history_list.clear()
 //        val editor = shared_pref_hist_handler?.edit()
 //        editor?.apply{
