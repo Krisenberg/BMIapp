@@ -10,22 +10,22 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 
-private const val string_set_key = "historyEntries"
-private const val history_file_key = "sharedPreferencesHistory"
-private const val max_list_size = 10
+private const val STRING_SET_KEY = "historyEntries"
+private const val HISTORY_FILE_KEY = "sharedPreferencesHistory"
+private const val MAX_LIST_SIZE = 10
 object HistoryHandler {
     private var shared_pref_hist_handler: SharedPreferences? = null
     private lateinit var history_list: MutableList<HistoryEntry>
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun setup(context: Context) {
-        shared_pref_hist_handler = context.getSharedPreferences(history_file_key, Context.MODE_PRIVATE)
+        shared_pref_hist_handler = context.getSharedPreferences(HISTORY_FILE_KEY, Context.MODE_PRIVATE)
         history_list = loadSortedHistoryList()
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun loadSortedHistoryList(): MutableList<HistoryEntry>{
-        val savedSet = shared_pref_hist_handler?.getStringSet(string_set_key, setOf())
+        val savedSet = shared_pref_hist_handler?.getStringSet(STRING_SET_KEY, setOf())
         val entriesList = mutableListOf<HistoryEntry>()
 
         if (savedSet != null) {
@@ -37,35 +37,20 @@ object HistoryHandler {
             }
         }
 
-        //val sortedList = entriesList.toMutableList()
         val formatter = DateTimeFormatter.ofPattern("HH:mm:ss dd.MM.yyyy")
         val sortedList = entriesList.sortedByDescending {
             LocalDateTime.parse(it.date, formatter)
-            //LocalDateTime.parse(it.date, formatter)
         }.toMutableList()
         return sortedList
     }
 
-    //@RequiresApi(Build.VERSION_CODES.O)
     fun addEntry(entry: HistoryEntry){
-//        val savedSet = shared_pref_hist_handler?.getStringSet(string_set_key, setOf())!!
-//        var newSet: MutableSet<String> = mutableSetOf()
-//
-//        var newSetSize = savedSet.size
-//
-//        if (newSetSize == 10)
-//            newSetSize--
-//
-//
-//        for (i in 0..<newSetSize) {
-//            newSet.add(savedSet.elementAt(i))
-//        }
         val historyListSize = history_list.size
         var deletedEntry: HistoryEntry? = null
 
         if (historyListSize > 0) {
-            if (historyListSize == max_list_size) {
-                deletedEntry = history_list[max_list_size-1]
+            if (historyListSize == MAX_LIST_SIZE) {
+                deletedEntry = history_list[MAX_LIST_SIZE-1]
                 for (i in historyListSize-1 downTo 1) {
                     history_list[i] = history_list[i-1]
                 }
@@ -80,17 +65,7 @@ object HistoryHandler {
             history_list.add(entry)
         }
 
-//        for (i in historyListSize downTo 1) {
-//            history_list[i] = history_list[i-1]
-//        }
-//
-//        if (historyListSize > 0)
-//            history_list[0] = entry
-//        else
-//            history_list.add(entry)
-
-        val savedSet = shared_pref_hist_handler?.getStringSet(string_set_key, setOf())
-//        shared_pref_hist_handler?.edit()?.remove(string_set_key)?.commit()
+        val savedSet = shared_pref_hist_handler?.getStringSet(STRING_SET_KEY, setOf())
         var newSet: MutableSet<String> = mutableSetOf()
         if (savedSet != null)
             newSet = savedSet.toMutableSet()
@@ -102,33 +77,16 @@ object HistoryHandler {
 
         val editor = shared_pref_hist_handler?.edit()
         editor?.apply{
-            putStringSet(string_set_key, newSet)
+            putStringSet(STRING_SET_KEY, newSet)
         }?.apply()
     }
 
     fun getEntries(): List<HistoryEntry>{
-//        val savedSet = shared_pref_hist_handler?.getStringSet(string_set_key, setOf())
-//        var entriesList = mutableListOf<HistoryEntry>()
-//
-//        if (savedSet != null) {
-//
-//            for (i in 0..<savedSet.size) {
-//                val serializedEntry = savedSet.elementAt(i)
-//                val deserializedEntry = Json.decodeFromString<HistoryEntry>(serializedEntry)
-//                entriesList.add(deserializedEntry)
-//            }
-//        }
-//
-//        return entriesList
         return history_list
     }
 
     fun deleteHistory() {
-        shared_pref_hist_handler?.edit()?.remove(string_set_key)?.apply()
+        shared_pref_hist_handler?.edit()?.remove(STRING_SET_KEY)?.apply()
         history_list.clear()
-//        val editor = shared_pref_hist_handler?.edit()
-//        editor?.apply{
-//            putStringSet(string_set_key, setOf())
-//        }?.apply()
     }
 }

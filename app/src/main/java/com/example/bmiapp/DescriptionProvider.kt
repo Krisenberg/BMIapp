@@ -1,7 +1,6 @@
 package com.example.bmiapp
 
 import android.content.Context
-import android.provider.Settings.Global.getString
 
 object DescriptionProvider {
 

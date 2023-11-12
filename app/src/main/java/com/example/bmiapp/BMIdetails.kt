@@ -1,16 +1,12 @@
-package com.example.bmiapp;
+package com.example.bmiapp
 
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.RecyclerView
 
 class BMIdetails : AppCompatActivity() {
-
-    private lateinit var historyRecyclerAdapter: RecyclerAdapter
-    private lateinit var history_entries: MutableList<HistoryEntry>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.bmi_details)

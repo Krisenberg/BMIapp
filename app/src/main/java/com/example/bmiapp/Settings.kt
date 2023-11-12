@@ -8,7 +8,6 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 
-private const val shared_pref_file_key = "sharedPreferencesUnitAdapter"
 class Settings : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,7 +19,7 @@ class Settings : AppCompatActivity() {
 
         val height_units_spinner = findViewById<Spinner>(R.id.heightUnitSpinner)
         //create adapter that will allow to set a style of the spinner and use getPosition function
-        val height_adapter = ArrayAdapter<String>(this, R.layout.list_item, resources.getStringArray(R.array.height_units_array))
+        val height_adapter = ArrayAdapter(this, R.layout.list_item, resources.getStringArray(R.array.height_units_array))
         height_units_spinner.adapter = height_adapter
 
         //set value stored by UnitAdapter in the spinner
@@ -28,7 +27,7 @@ class Settings : AppCompatActivity() {
 
         val weight_units_spinner = findViewById<Spinner>(R.id.weightUnitSpinner)
         //create adapter that will allow to set a style of the spinner and use getPosition function
-        val weight_adapter = ArrayAdapter<String>(this, R.layout.list_item, resources.getStringArray(R.array.weight_units_array))
+        val weight_adapter = ArrayAdapter(this, R.layout.list_item, resources.getStringArray(R.array.weight_units_array))
         weight_units_spinner.adapter = weight_adapter
 
         //set value stored by UnitAdapter in the spinner

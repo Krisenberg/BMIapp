@@ -1,8 +1,15 @@
 package com.example.bmiapp
 
+import android.content.Context
+import android.os.Build
+import androidx.annotation.RequiresApi
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import java.time.ZoneId
+import java.time.ZonedDateTime
+import java.time.format.DateTimeFormatter
 
 class MainViewModel : ViewModel() {
 
@@ -19,8 +26,9 @@ class MainViewModel : ViewModel() {
     fun bmi_value(): LiveData<Double?> { return _bmi_value }
 
     fun checkUnitAndUpdateHeight(): Boolean {
-        if (_height_unit != UnitAdapter.loadHeightUnit()) {
-            _height_unit = UnitAdapter.loadHeightUnit()
+        val stored_unit = UnitAdapter.loadHeightUnit()
+        if (_height_unit != stored_unit) {
+            _height_unit = stored_unit
             _height_value = null
             _bmi_value.value = null
             return true
@@ -29,8 +37,9 @@ class MainViewModel : ViewModel() {
     }
 
     fun checkUnitAndUpdateWeight(): Boolean {
-        if (_weight_unit != UnitAdapter.loadWeightUnit()) {
-            _weight_unit = UnitAdapter.loadWeightUnit()
+        val stored_unit = UnitAdapter.loadHeightUnit()
+        if (_weight_unit != stored_unit) {
+            _weight_unit = stored_unit
             _weight_value = null
             _bmi_value.value = null
             return true
@@ -78,7 +87,14 @@ class MainViewModel : ViewModel() {
         return false
     }
 
-    fun getBMIcolor(): Int{
-        return R.color.red
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun addEntryToTheHistory(context: Context) {
+        val bmi_color = DescriptionProvider.getCategoryColorBasedOnValue(_bmi_value.value!!, context)
+        val date_formatter = DateTimeFormatter.ofPattern("HH:mm:ss dd.MM.yyyy")
+        val current_date = ZonedDateTime.now(ZoneId.of("Europe/Warsaw")).format(date_formatter)
+        val newEntry = HistoryEntry(current_date.toString(), _height_value!!, _height_unit,
+            _weight_value!!, _weight_unit, _bmi_value.value!!, ContextCompat.getColor(context, bmi_color))
+
+        HistoryHandler.addEntry(newEntry)
     }
 }
