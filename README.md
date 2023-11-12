@@ -25,4 +25,22 @@ This application uses a MVVM architectural pattern.
 `MainActivity` has a reference to the `MainViewModel` which is responsible for:
 - communicating with the `UnitAdapter` to retrieve the currently selected units,
 - updating height and weight values (and BMI score if needed),
-- communicating with the `BMIcalculator` to get the properly calculated BMI score after passing height and weight values and proper scaling factors for the selected units retrieved from the `UnitAdapter`.
+- communicating with the `BMIcalculator` to get the properly calculated BMI score after passing height and weight values and proper scaling factors for the selected units retrieved from the `UnitAdapter`
+- communicating with the `HistoryHandler` in order to add new entries to the history.
+
+`MainActivity`:
+- implements the Observator design pattern to observe the `bmi_value()` function (from the `MainViewModel`) which returns a `LiveData<Double?>`.
+- offers the user a menu to start new activities,
+- controlls the UI components in order to properly react for the changes by notifying `MainViewModel`.
+
+`UnitAdapter`:
+- stores two maps with keys being the names of the height and weight units and values being the scaling factors of those units to the SI units (*m* and *kg*),
+- uses *SharedPreferences* to store selected units by the user,
+- provides an easy access to the unit and its scaling factor for the other classes.
+
+`BMIcalculator` - implements a formula to calculate the BMI score. It is a separate object hence it is easy to find that formula and adjust it if needed.
+
+`HistoryHandler`:
+- uses *SharedPreferences* to permanently store the list of 10 last entries as a *StringSet* (entries are serialized to the JSON format first and then added to the set),
+- provides a `loadSortedHistoryList()` function that loads stored set, changes it into a `mutableListOf<HistoryEntry>` by deserializing each entry and sorts the list in a descending chronological order,
+- provides an `addEntry()` function that takes care about adding new entries while not exceeding the size limit of the list.
