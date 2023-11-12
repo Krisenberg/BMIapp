@@ -36,6 +36,7 @@ class MainActivity : AppCompatActivity() {
 
         //setup the Unit Adapter so it can use the SharedPreferences
         UnitAdapter.setup(applicationContext)
+        //setup the History Handler so it can use the SharedPreferences
         HistoryHandler.setup(applicationContext)
 
         mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
