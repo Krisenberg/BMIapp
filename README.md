@@ -20,7 +20,7 @@ Here are some screenshots presenting the basic usage of the app.
 <img src='https://github.com/Krisenberg/BMIapp/assets/129224832/c62c5d20-0786-498c-8030-da4a9fc05073' width='216' height='444'>
 
 ## Implementation details
-This application uses a MVVM architectural pattern.  
+This application uses the MVVM architectural pattern.  
   
 `MainActivity` has a reference to the `MainViewModel` which is responsible for:
 - communicating with the `UnitAdapter` to retrieve the currently selected units,
@@ -44,3 +44,9 @@ This application uses a MVVM architectural pattern.
 - uses *SharedPreferences* to permanently store the list of 10 last entries as a *StringSet* (entries are serialized to the JSON format first and then added to the set),
 - provides a `loadSortedHistoryList()` function that loads stored set, changes it into a `mutableListOf<HistoryEntry>` by deserializing each entry and sorts the list in a descending chronological order,
 - provides an `addEntry()` function that takes care about adding new entries while not exceeding the size limit of the list.
+
+`DescriptionProvider` - this object is responsible for providing data about each BMI category. It has four maps - each of them maps the *category ID* to respectively: *category name*, *category upper bound*, *category color* and *category description*. It has a function that returns a category ID based on the BMI score passed as an argument. Then this function is used to get the other properties related to the category based only on the BMI score.
+
+`History` activity uses a RecyclerView with a custom `RecyclerAdapter` to display previously calculated entries.
+
+`Settings` displays the spinners to let the user select the unit. After such a selection it notifies the `UnitAdapter` about the change.
