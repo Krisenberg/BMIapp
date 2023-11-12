@@ -10,14 +10,18 @@ This app was created for the Mobile Applications course. Main features that were
 
 ## Demo
 Here are some screenshots presenting the basic usage of the app.  
-  
-<img src='https://github.com/Krisenberg/BMIapp/assets/129224832/5b1227e3-10ef-44a9-88cc-f65762ad7588' width='216' height='444'>
-<img src='https://github.com/Krisenberg/BMIapp/assets/129224832/c0b1d8b3-ef36-42a8-9ade-097b14cd0430' width='216' height='444'>
-<img src='https://github.com/Krisenberg/BMIapp/assets/129224832/bf419546-248e-4225-9cda-8e4a12a0e899' width='216' height='444'>
-<img src='https://github.com/Krisenberg/BMIapp/assets/129224832/ef3db552-0ab9-47b8-83c5-8edace5e0a28' width='216' height='444'>
-<img src='https://github.com/Krisenberg/BMIapp/assets/129224832/2890e2a0-f41e-4421-b5be-951d3ee58397' width='216' height='444'>
-<img src='https://github.com/Krisenberg/BMIapp/assets/129224832/6d09fe03-7bd9-4fa0-93be-c52fd25fed84' width='216' height='444'>
-<img src='https://github.com/Krisenberg/BMIapp/assets/129224832/c62c5d20-0786-498c-8030-da4a9fc05073' width='216' height='444'>
+
+<p float='left'>
+  <img src='screenshots/Screenshot_1.jpg' width='216' height='444'>
+  <img src='screenshots/Screenshot_2.jpg' width='216' height='444'>
+  <img src='screenshots/Screenshot_3.jpg' width='216' height='444'>
+</p>
+<p float='left'>
+  <img src='screenshots/Screenshot_4.jpg' width='216' height='444'>
+  <img src='screenshots/Screenshot_5.jpg' width='216' height='444'>
+  <img src='screenshots/Screenshot_6.jpg' width='216' height='444'>
+</p>
+<img src='screenshots/Screenshot_7.jpg' width='216' height='444'>
 
 ## Implementation details
 This application uses the MVVM architectural pattern.  
