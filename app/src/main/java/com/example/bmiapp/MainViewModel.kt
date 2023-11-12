@@ -37,7 +37,7 @@ class MainViewModel : ViewModel() {
     }
 
     fun checkUnitAndUpdateWeight(): Boolean {
-        val stored_unit = UnitAdapter.loadHeightUnit()
+        val stored_unit = UnitAdapter.loadWeightUnit()
         if (_weight_unit != stored_unit) {
             _weight_unit = stored_unit
             _weight_value = null
